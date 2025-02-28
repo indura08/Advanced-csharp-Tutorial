@@ -1,0 +1,27 @@
+These notes are taken from official .net c# documentation of Microsoft web site
+
+
+x) A delegate object is normally constructed by providing the name of the method the delegate wraps, or with a lambda expression. A delegate can be invoked once instantiated in this manner. Invoking a delegate calls the method attached to the delegate instance. The parameters passed to the delegate by the caller are passed to the method. The delegate returns the return value, if any, from the method. 
+
+example:
+
+// Create a method for a delegate.
+public static void DelegateMethod(string message)
+{
+    Console.WriteLine(message);
+}
+
+// Instantiate the delegate.
+Callback handler = DelegateMethod;
+
+// Call the delegate.
+handler("Hello World");
+
+
+
+x) Delegate types are derived from the Delegate class in .NET. Delegate types are sealed, they can't be derived from, and it isn't possible to derive custom classes from Delegate. Because the instantiated delegate is an object, it can be passed as an argument, or assigned to a property. A method can accept a delegate as a parameter, and call the delegate at some later time. This is known as an asynchronous callback, and is a common method of notifying a caller when a long process completes. When a delegate is used in this fashion, the code using the delegate doesn't need any knowledge of the implementation of the method being used. The functionality is similar to the encapsulation interfaces provide.
+
+x) in multicast delegates you cannot pass different arguments to each method in a multicast delegate using a single call like del(5, 3);. When you invoke the delegate, it will pass the same arguments to all methods in the delegate.
+
+Why?
+A multicast delegate is designed to invoke all methods that are assigned to it in a single call. Since all methods are expected to have the same method signature (i.e., same parameters), the same arguments are passed to all methods.

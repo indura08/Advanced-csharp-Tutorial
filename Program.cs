@@ -29,6 +29,31 @@ namespace Advanced_c__tutorial
             MathFunction mathfuncObject2 = delegate2ClassObject.SumFunction;
             Console.WriteLine(mathfuncObject2(50, 49));
 
+
+            //multicast delegate testing
+            //------------------------------------
+
+            DelegateExample3.MulticastDelgate multiMethodDelgate = new DelegateExample3.MulticastDelgate(DelegateExample3.MulticastDelegateMethod1);
+            multiMethodDelgate += DelegateExample3.MulticastDelegateMethod2;
+
+            multiMethodDelgate("Indura perera");
+
+            //e wagemawena wena delegate dekk hdla e deka ekathu krla aluth delagte ekkt dennath puluwan
+
+            DelegateExample3.MulticastDelgate delagte1 = new DelegateExample3.MulticastDelgate(DelegateExample3.MulticastDelegateMethod1);
+            DelegateExample3.MulticastDelgate delagte2 = new DelegateExample3.MulticastDelgate(DelegateExample3.MulticastDelegateMethod2);
+
+            DelegateExample3.MulticastDelgate multiDelegateDelegate = delagte1 + delagte2;
+
+            multiDelegateDelegate("Eliana Vivienne");
+
+            //Passing delegate as an argument for another method
+            //------------------------------------------------------
+
+            DelegateExample4.DelegateAsArgument delegateAsArguement = new DelegateExample4.DelegateAsArgument(DelegateExample4.HelperMethod);
+
+            DelegateExample4.Method1(delegateAsArguement, "Hello there 'Delegate as arguement class :)");
+
         }
     }
 }

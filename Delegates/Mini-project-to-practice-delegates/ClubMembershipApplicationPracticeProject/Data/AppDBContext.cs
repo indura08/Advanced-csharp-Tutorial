@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ClubMembershipApplicationPracticeProject.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace ClubMembershipApplicationPracticeProject.Data
             optionsBuilder.UseInMemoryDatabase("InmemroyDB");
             base.OnConfiguring(optionsBuilder);
         }
+
+        public DbSet<User> Users { get; set; }
     }
 }

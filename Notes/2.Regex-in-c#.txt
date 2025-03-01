@@ -1,0 +1,76 @@
+What is Regex in C#? (Simplified Explanation)
+----------------------------------------------
+
+Regex (short for Regular Expressions) is a pattern-matching system used to search, validate, and manipulate text in C#.
+
+Think of it as a smart filter that helps you find specific patterns in strings. For example:
+
+Check if an email is valid ✅
+Find all phone numbers in a document 📞
+Replace certain words in a sentence ✏️
+In C#, regex is handled using the System.Text.RegularExpressions namespace.
+
+1️⃣ Basic Example of Regex in C#
+----------------------------
+
+Let's check if a string contains a valid email:
+
+using System;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main()
+    {
+        string email = "test@example.com";
+        string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";  // Email pattern
+
+        bool isValid = Regex.IsMatch(email, pattern);
+        Console.WriteLine(isValid); // Output: True
+    }
+}
+
+✅ Regex.IsMatch(text, pattern) → Returns true if the string matches the pattern.
+✅ The pattern checks if the string follows an email format.
+
+2️⃣ Common Regex Methods in C#
+------------------------------
+
+Method					Description					Example
+--------------------------------------------------------------------------------------------------------------------------------------------
+Regex.IsMatch()			Checks if a string matches the pattern		Regex.IsMatch("hello123", @"\d") → True
+Regex.Match()			Finds the first match				Regex.Match("abc123xyz", @"\d+") → "123"
+Regex.Matches()			Finds all matches				Regex.Matches("abc123xyz456", @"\d+") → ["123", "456"]
+Regex.Replace()			Replaces matched text				Regex.Replace("Hello 123", @"\d", "*") → "Hello ***"
+
+
+3️⃣ Real-World Examples
+---------------------
+
+✅ 2. Extract Numbers from a String
+
+string text = "Order ID: 5678, Total: $45.99";
+MatchCollection matches = Regex.Matches(text, @"\d+");
+
+foreach (Match match in matches)
+{
+    Console.WriteLine(match.Value);  
+}
+// Output: 5678
+//         45
+//         99
+
+
+4️⃣ Regex Cheat Sheet
+----------------------
+
+Pattern					Meaning					Example
+--------------------------------------------------------------------------------------------------------------
+\d				Any digit (0-9)				\d+ → "123" in "Order 123"
+\w				Any letter or number			\w+ → "Hello" in "Hello 123"
+\s				Any whitespace (space, tab, newline)	\s+ → " " in "Hello World"
+.				Any character except new line		a.b → Matches "acb", "a_b"
+^				Start of string	^Hello → Matches 	"Hello world" but not "Hi Hello"
+$				End of string	world$ → Matches 	"Hello world" but not "world hello"
+[]				Match any character inside		[aeiou] → Matches any vowel
+{n,m}				Match n to m repetitions		\d{2,4} → Matches "12", "123", "1234"

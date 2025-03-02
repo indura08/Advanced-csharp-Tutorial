@@ -10,15 +10,15 @@ namespace ClubMembershipApplicationPracticeProject.FieldValidators
     {
         public enum UserRegistrationField
         {
-            EmailAddress,
-            FirstName,
-            LastName,
-            Password,
-            PasswordCompare,
-            DateOfBirth,
-            PhoneNumber,
-            Address,
-            PostCode
+            EmailAddress,       //0
+            FirstName,          //1
+            LastName,           //2
+            Password,           //3
+            PasswordCompare,    //4
+            DateOfBirth,        //5
+            PhoneNumber,        //6
+            Address,            //7
+            PostCode            //8
 
         }
     }

@@ -10,7 +10,7 @@ namespace ClubMembershipApplicationPracticeProject.FieldValidators
     public interface IFieldValidators
     {
         void InitialseValidatorDelegates();
-        string FieldArray { get; }
+        string[] FieldArray { get; }
         FieldValidatorDel validatorDel { get; }
     }
 }

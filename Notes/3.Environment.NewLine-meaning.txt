@@ -1,0 +1,43 @@
+🔹 What is Environment.NewLine?
+----------------------------------
+
+Environment.NewLine is a built-in property in C# that gives you the newline character(s) specific to the operating system.
+
+Syntax: Environment.NewLine
+
+
+Returns: A string that represents a new line ("\n" or "\r\n" depending on the OS)
+
+🔹 How is it Different from Console.WriteLine?
+------------------------------------------------
+
+Both Environment.NewLine and Console.WriteLine can create new lines, but they are used differently:
+
+✅ Using Console.WriteLine
+
+Console.WriteLine("Hello"); automatically moves to the next line after printing "Hello".
+
+It works only when printing to the console.
+
+✅ Using Environment.NewLine
+
+Environment.NewLine is just a string ("\n" or "\r\n") that represents a new line.
+It can be used anywhere (not just in Console.WriteLine), such as logs, files, and UI elements.
+
+
+🔹 When Should You Use Environment.NewLine?
+-----------------------------------------------
+
+1. When you need new lines in variables or files:
+
+string logMessage = "Error occurred:" + Environment.NewLine + "Invalid input.";
+File.WriteAllText("log.txt", logMessage);
+
+
+2. When working with multi-platform applications:
+Windows uses "\r\n" (Carriage Return + Line Feed).
+Linux & macOS use "\n" (Line Feed).
+Environment.NewLine automatically picks the correct one for the OS.
+
+
+	

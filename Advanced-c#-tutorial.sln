@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advanced-c#-tutorial", "Adv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClubMembershipApplicationPracticeProject", "Delegates\Mini-project-to-practice-delegates\ClubMembershipApplicationPracticeProject\ClubMembershipApplicationPracticeProject.csproj", "{6146E92B-E3BA-4CD7-A97B-3E2E04AD7698}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldValidationAPIClassLIbrary", "Delegates\FieldValidationAPIClassLIbrary\FieldValidationAPIClassLIbrary.csproj", "{CF10827D-9E57-4A87-9FDA-FEEE5B7747C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldValidationAPIClassLIbrary", "Delegates\Mini-project-to-practice-delegates\FieldValidationAPIClassLIbrary\FieldValidationAPIClassLIbrary.csproj", "{CF10827D-9E57-4A87-9FDA-FEEE5B7747C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

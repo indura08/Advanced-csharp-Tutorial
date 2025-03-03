@@ -1,0 +1,103 @@
+🔹 using Has Two Main Uses in C#
+-----------------------------------
+
+1️⃣ Importing namespaces (the common one at the top of files)
+2️⃣ Managing resources properly (inside a using block)
+
+1️⃣ using for Importing Namespaces (At the Top of a File)
+_______________________________________________
+
+What it does?
+
+It lets you use classes and methods from another namespace without writing the full name.
+
+Example Without using:
+
+System.Console.WriteLine("Hello, World!");
+
+Here, we have to write System. every time because Console belongs to the System namespace.
+
+using System;  // Import the System namespace
+
+Console.WriteLine("Hello, World!");
+
+Now, we don't need to write System. every time, because we imported it at the top!
+
+✅ It makes code cleaner and shorter!
+
+2️⃣ using Block for Resource Management (Inside Code)
+_______________________________________________
+
+What it does?
+
+It automatically cleans up resources (like files, database connections, network streams, etc.).
+It makes sure no memory leaks happen by calling .Dispose() for you.
+
+Example Without using:
+
+FileStream file = new FileStream("example.txt", FileMode.Open);
+StreamReader reader = new StreamReader(file);
+
+string content = reader.ReadToEnd();
+Console.WriteLine(content);
+
+// Manually closing the file
+reader.Dispose();
+file.Dispose();
+
+😬 Problem?
+
+You must call .Dispose() manually, or the file might stay open and lock the system.
+If an error happens before .Dispose(), the program might forget to close the file.
+
+Example With using Block (Better Way!)
+
+using (FileStream file = new FileStream("example.txt", FileMode.Open))
+using (StreamReader reader = new StreamReader(file))
+{
+    string content = reader.ReadToEnd();
+    Console.WriteLine(content);
+} // 🚀 Automatically calls Dispose() here!
+
+
+✅ Advantages:
+
+✔️ No need to call .Dispose() manually!
+✔️ Even if an error happens, the file will still close properly!
+
+
+Q: okay so in the method EmailExists inside the RegisterUser why we should use dbcontext inside a using block rather that do dependency injection for dbcontext class ?
+
+A: 
+
+Explanation of the using Block:
+
+Here, you are creating a new instance of ClubMembershipDbContext inside a using block.
+The using block ensures that the DbContext is properly disposed of once you’re done using it. This is critical for managing resources like database connections, which need to be closed properly after use.
+
+🔹 Why Use DbContext Inside a using Block Here?
+
+1. Automatic Resource Management:
+
+The DbContext is managing connections to the database. After using it, you want to release those resources (database connections, memory) properly.
+using block ensures that Dispose() is called automatically when the block ends, which closes the connection to the database and releases resources.
+
+2. Short-lived Context:
+
+In this method, the DbContext is only used for one specific task (checking if an email exists in the database).
+Once the task is complete, there's no need to keep the DbContext around any longer. You don’t need a long-lived instance because you're not reusing it multiple times within the method.
+
+🔹 Why Use Dependency Injection (DI) Instead of a using Block?
+
+Dependency Injection (DI):
+---------------------------
+
+Dependency Injection is a design pattern that is often used in ASP.NET Core applications to inject dependencies (like services or DbContexts) into classes.
+
+DbContext can be injected into your class once and used throughout the class lifetime.
+
+It is typically preferred in web applications (like ASP.NET Core) for longer-lived dependencies (e.g., service classes, controllers) where you need to reuse the same instance of the DbContext over multiple method calls.
+
+
+
+

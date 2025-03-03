@@ -53,7 +53,14 @@ namespace ClubMembershipApplicationPracticeProject.FieldValidators
 
         public void InitialseValidatorDelegates()
         {
-            throw new NotImplementedException();
+            _fieldValidatorDel = new FieldValidatorDel(ValidatorDel);
+            _emailExisitDelegate = new EmailExistsDelgate(_register.EmailExists);
+
+            _requiredValidationDelegate = CommonFieldValidatorFunction.RequiredFieldValidationDelegate;
+            _stringLengthValidationDelegate = CommonFieldValidatorFunction.StringValidationDelegate;
+            _dateValidationDelegate = CommonFieldValidatorFunction.DateValidationDelegate;
+            _patternMatchingdelegate = CommonFieldValidatorFunction.PatternMatchingDelegate;
+            _compareFieldsdValidationDelegate = CommonFieldValidatorFunction.ComparefieldValidationDelegate;
         }
 
         private bool ValidateFields(int fieldIndex, string fieldValue, string[] fieldArray, out string fieldInvalidMessage)
@@ -93,11 +100,30 @@ namespace ClubMembershipApplicationPracticeProject.FieldValidators
                     fieldInvalidMessage = (fieldInvalidMessage == "" && !_compareFieldsdValidationDelegate(fieldValue, fieldArray[(int)FieldConstants.UserRegistrationField.Password])) ? $"Your entry did not match your password{Environment.NewLine}" : fieldInvalidMessage;
                     break;
 
+                case FieldConstants.UserRegistrationField.DateOfBirth:
+                    fieldInvalidMessage = (!_requiredValidationDelegate(fieldValue)) ? $"you must enter a value for the field {Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_dateValidationDelegate(fieldValue, out DateTime validDateTime)) ? $"You did not enter a valid date time" : fieldInvalidMessage;
+                    break;
 
-                    //methna idla blnna heta 
+                case FieldConstants.UserRegistrationField.PhoneNumber:
+                    fieldInvalidMessage = (!_requiredValidationDelegate(fieldValue)) ? $"You must enter value for {Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && _patternMatchingdelegate(fieldValue, CommonRegularExpressionValidationPatterns.Uk_PhoneNumber_RegEx_Pattern)) ? $"You must enter a valid UK phone number {Environment.NewLine}" : fieldInvalidMessage;
+                    break;
 
+                case FieldConstants.UserRegistrationField.Address:
+                    fieldInvalidMessage = (!_requiredValidationDelegate(fieldValue)) ? $"You must enter a value for field : {Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    break;
 
+                case FieldConstants.UserRegistrationField.PostCode:
+                    fieldInvalidMessage = (!_requiredValidationDelegate(fieldValue)) ? $"You must entera a vakue for field {Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && _patternMatchingdelegate(fieldValue, CommonRegularExpressionValidationPatterns.Uk_Post_Code_RegEx_Pattern)) ? $"You must enter valid Postal code numebr {Environment.NewLine}" : fieldInvalidMessage;
+                    break;
+
+                default:
+                    throw new ArgumentException("This field does not exists");
             }
+
+            return (fieldInvalidMessage == "");
         }
     }
 }

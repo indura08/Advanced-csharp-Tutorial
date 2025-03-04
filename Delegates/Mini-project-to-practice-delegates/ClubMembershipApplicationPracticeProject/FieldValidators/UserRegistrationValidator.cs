@@ -49,11 +49,11 @@ namespace ClubMembershipApplicationPracticeProject.FieldValidators
             _register = register;
         }
 
-        public FieldValidatorDel validatorDel => throw new NotImplementedException();
+        public FieldValidatorDel validatorDel => _fieldValidatorDel;
 
         public void InitialseValidatorDelegates()
         {
-            _fieldValidatorDel = new FieldValidatorDel(ValidatorDel);
+            _fieldValidatorDel = new FieldValidatorDel(ValidateFields);
             _emailExisitDelegate = new EmailExistsDelgate(_register.EmailExists);
 
             _requiredValidationDelegate = CommonFieldValidatorFunction.RequiredFieldValidationDelegate;
@@ -82,7 +82,7 @@ namespace ClubMembershipApplicationPracticeProject.FieldValidators
 
                 case FieldConstants.UserRegistrationField.FirstName:
                     fieldInvalidMessage = (!_requiredValidationDelegate(fieldValue)) ? $"Youe must enter a value to : {Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
-                    fieldInvalidMessage = (fieldInvalidMessage == "" && _stringLengthValidationDelegate(fieldValue, FirstName_min_length, FirstName_max_length)) ? $"The length for field : {Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)} must be between {FirstName_min_length} and {FirstName_max_length}{Environment.NewLine}" : fieldInvalidMessage;
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_stringLengthValidationDelegate(fieldValue, FirstName_min_length, FirstName_max_length)) ? $"The length for field : {Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)} must be between {FirstName_min_length} and {FirstName_max_length}{Environment.NewLine}" : fieldInvalidMessage;
                     break;
 
                 case FieldConstants.UserRegistrationField.LastName:
@@ -107,7 +107,7 @@ namespace ClubMembershipApplicationPracticeProject.FieldValidators
 
                 case FieldConstants.UserRegistrationField.PhoneNumber:
                     fieldInvalidMessage = (!_requiredValidationDelegate(fieldValue)) ? $"You must enter value for {Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
-                    fieldInvalidMessage = (fieldInvalidMessage == "" && _patternMatchingdelegate(fieldValue, CommonRegularExpressionValidationPatterns.Uk_PhoneNumber_RegEx_Pattern)) ? $"You must enter a valid UK phone number {Environment.NewLine}" : fieldInvalidMessage;
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_patternMatchingdelegate(fieldValue, CommonRegularExpressionValidationPatterns.Uk_PhoneNumber_RegEx_Pattern)) ? $"You must enter a valid UK phone number {Environment.NewLine}" : fieldInvalidMessage;
                     break;
 
                 case FieldConstants.UserRegistrationField.Address:

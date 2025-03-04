@@ -28,7 +28,7 @@ namespace FieldValidationAPIClassLIbrary
             {
                 if (_requiredValidationdel == null)
                 {
-                    _requiredValidationdel = new RequiredValidationDelegate(RequiredFieldValidationDelegate);
+                    _requiredValidationdel = new RequiredValidationDelegate(RequiredFiedlValidatorMethod);
 
                 }
 
@@ -42,7 +42,7 @@ namespace FieldValidationAPIClassLIbrary
             {
                 if (_stringLengthValidationdel == null)
                 {
-                    _stringLengthValidationdel = new StringLengthValidationDelegate(StringValidationDelegate);
+                    _stringLengthValidationdel = new StringLengthValidationDelegate(StringFieldLengthValidationMethod);
                 }
                 return _stringLengthValidationdel;
             }
@@ -55,7 +55,7 @@ namespace FieldValidationAPIClassLIbrary
             {
                 if (_dateValidationdel == null)
                 {
-                    _dateValidationdel = new DateValidationDelegate(DateValidationDelegate);
+                    _dateValidationdel = new DateValidationDelegate(DatefieldValidationMehtod);
                 }
                 return _dateValidationdel;
             }
@@ -67,7 +67,7 @@ namespace FieldValidationAPIClassLIbrary
             {
                 if (_patternMatchindel == null)
                 {
-                    _patternMatchindel = new PatternMatchingDelegate(PatternMatchingDelegate);
+                    _patternMatchindel = new PatternMatchingDelegate(FieldPatternMatchingMethod);
                 }
                 return _patternMatchindel;
             }
@@ -79,7 +79,7 @@ namespace FieldValidationAPIClassLIbrary
             {
                 if (_compareFieldsValidationdel == null)
                 {
-                    _compareFieldsValidationdel = new ComparefieldsValidationDelegate(ComparefieldValidationDelegate);
+                    _compareFieldsValidationdel = new ComparefieldsValidationDelegate(fieldComparisionValidationMethod);
                 }
                 return _compareFieldsValidationdel;
             }

@@ -13,7 +13,17 @@ namespace ClubMembershipApplicationPracticeProject
     {
         public static IView GetMainViewObject()
         {
-            //todo
+            ILogin login = new LoginUser();
+            IRegister register = new RegisterUser();
+
+            IFieldValidators userRegistrationValidator = new UserRegistrationValidator(register);
+            userRegistrationValidator.InitialseValidatorDelegates();
+
+            IView registerView = new UserRegistreationView(register, userRegistrationValidator);
+            IView loginView = new UserLoginView(login);
+            IView mainView = new MainView(registerView, loginView);
+
+            return mainView;
         }
     }
 }

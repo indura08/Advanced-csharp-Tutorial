@@ -1,10 +1,15 @@
-﻿namespace ClubMembershipApplicationPracticeProject
+﻿using ClubMembershipApplicationPracticeProject.Views;
+
+namespace ClubMembershipApplicationPracticeProject
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            IView mainView = Factory.GetMainViewObject();
+            mainView.RunView();
+
+            Console.ReadKey();
         }
     }
 }

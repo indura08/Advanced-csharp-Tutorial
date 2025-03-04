@@ -27,10 +27,18 @@ namespace ClubMembershipApplicationPracticeProject.Views
             CommonOutputText.WriteMainHeading();
             CommonOutputText.WriteRegistrationheading();
 
-            _fieldValidators.FieldArray[(int)FieldConstants.UserRegistrationField.EmailAddress] = GetInputFromUser();
+            _fieldValidators.FieldArray[(int)FieldConstants.UserRegistrationField.EmailAddress] = GetInputFromUser(FieldConstants.UserRegistrationField.EmailAddress, "Please enter your email address: ");
+            _fieldValidators.FieldArray[(int)FieldConstants.UserRegistrationField.FirstName] = GetInputFromUser(FieldConstants.UserRegistrationField.FirstName, "Please enter your firstName : ");
+            _fieldValidators.FieldArray[(int)FieldConstants.UserRegistrationField.LastName] = GetInputFromUser(FieldConstants.UserRegistrationField.LastName, "Please enter your LastName : ");
+            _fieldValidators.FieldArray[(int)FieldConstants.UserRegistrationField.Password] = GetInputFromUser(FieldConstants.UserRegistrationField.Password, $"Please enter your Password : {Environment.NewLine}(Your password must be containing at least 1 small-case, lettter, {Environment.NewLine}1 Capitalletter , 1 digit , a special charcters{Environment.NewLine} and the length should be between 6-10 characters )");
+            _fieldValidators.FieldArray[(int)FieldConstants.UserRegistrationField.PasswordCompare] = GetInputFromUser(FieldConstants.UserRegistrationField.PasswordCompare, "Please reenter your password: ");
+            _fieldValidators.FieldArray[(int)FieldConstants.UserRegistrationField.DateOfBirth] = GetInputFromUser(FieldConstants.UserRegistrationField.DateOfBirth, "Please enter your Date of birth: ");
+            _fieldValidators.FieldArray[(int)FieldConstants.UserRegistrationField.PhoneNumber] = GetInputFromUser(FieldConstants.UserRegistrationField.PhoneNumber, "Please enter your Phone number: ");
+            _fieldValidators.FieldArray[(int)FieldConstants.UserRegistrationField.Address] = GetInputFromUser(FieldConstants.UserRegistrationField.Address, "Please enter your address: ");
+            _fieldValidators.FieldArray[(int)FieldConstants.UserRegistrationField.PostCode] = GetInputFromUser(FieldConstants.UserRegistrationField.PostCode, "Please enter your Postal code: ");
+
+            RegisterUser();
         
-            //todo - meka completed nah , complete krnna 
-            //meka 2 weniyt krnna 1 thiynne pahala
         }
 
         private void RegisterUser()
@@ -57,10 +65,16 @@ namespace ClubMembershipApplicationPracticeProject.Views
             return fieldVal;
         }
 
-        private bool FieldValid(FieldConstants.UserRegistrationField, string fieldValue)
+        private bool FieldValid(FieldConstants.UserRegistrationField field, string fieldValue)
         {
-            //mewa implement krnna thiynwa 
-            //mekan patan ganna meka 1 
+            if (!_fieldValidators.validatorDel((int)field, fieldValue, _fieldValidators.FieldArray, out string invalidMessage))
+            {
+                CommonOutputformat.ChangeFontColor(FontTheme.Danger);
+                Console.WriteLine(invalidMessage);
+                CommonOutputformat.ChangeFontColor(FontTheme.Default);
+
+                return false;
+            }
             return true;
         }
     }

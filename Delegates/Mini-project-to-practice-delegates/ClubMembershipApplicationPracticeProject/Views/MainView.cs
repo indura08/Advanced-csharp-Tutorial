@@ -32,8 +32,11 @@ namespace ClubMembershipApplicationPracticeProject.Views
             {
                 RunUserRegistartionView();
                 RunLoginView();
+            } else if(key == ConsoleKey.L)
+            {
+                RunLoginView();
             }
-            else 
+            else
             {
                 Console.Clear();
                 Console.WriteLine("GoodBye Dan Palayan");

@@ -116,7 +116,7 @@ namespace ClubMembershipApplicationPracticeProject.FieldValidators
 
                 case FieldConstants.UserRegistrationField.PostCode:
                     fieldInvalidMessage = (!_requiredValidationDelegate(fieldValue)) ? $"You must entera a vakue for field {Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
-                    fieldInvalidMessage = (fieldInvalidMessage == "" && _patternMatchingdelegate(fieldValue, CommonRegularExpressionValidationPatterns.Uk_Post_Code_RegEx_Pattern)) ? $"You must enter valid Postal code numebr {Environment.NewLine}" : fieldInvalidMessage;
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_patternMatchingdelegate(fieldValue, CommonRegularExpressionValidationPatterns.Uk_Post_Code_RegEx_Pattern)) ? $"You must enter valid Postal code numebr {Environment.NewLine}" : fieldInvalidMessage;
                     break;
 
                 default:

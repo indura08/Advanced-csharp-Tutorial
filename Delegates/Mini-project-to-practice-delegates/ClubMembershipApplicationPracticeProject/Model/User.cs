@@ -15,7 +15,7 @@ namespace ClubMembershipApplicationPracticeProject.Model
         public string EmailAddress { get; set; } = null!;
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
-        [Required(ErrorMessage = "A password is must!")]
+        //[Required(ErrorMessage = "A password is must!")]
         public string Password { get; set; } = null!;
         public DateTime DateofBirth { get; set; }
         public string PhoneNumber { get; set; } = null!;

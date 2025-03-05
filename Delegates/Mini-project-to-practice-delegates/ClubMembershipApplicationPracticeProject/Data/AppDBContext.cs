@@ -16,6 +16,28 @@ namespace ClubMembershipApplicationPracticeProject.Data
             base.OnConfiguring(optionsBuilder);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>().HasData(
+
+                new User
+                {
+                    Id = -1,
+                    EmailAddress = "induraperera3@gmail.com",
+                    FirstName = "Indura",
+                    LastName = "Perera",
+                    Password = "VoidNon1@",
+                    PhoneNumber = "+44 20 7123 4567",
+                    Address = "102/London South, London",
+                    PostCode = "GIR 0AA",
+                    DateofBirth = DateTime.Parse("2000-06-18")
+                }
+            );
+
+        }
+
         public DbSet<User> Users { get; set; }
     }
 }

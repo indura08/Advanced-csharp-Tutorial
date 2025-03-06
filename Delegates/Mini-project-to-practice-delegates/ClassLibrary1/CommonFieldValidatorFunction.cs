@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace FieldValidationAPIClassLIbrary
+namespace ClassLibrary1
 {
     public delegate bool RequiredValidationDelegate(string fieldValue);
     public delegate bool StringLengthValidationDelegate(string fieldValue, int min, int max);
@@ -24,7 +24,7 @@ namespace FieldValidationAPIClassLIbrary
         //singleton pattern ek use krla api ensure krgnnwa me delegates walin hariytm eka instance eki hdnna puluwan kiyla
         public static RequiredValidationDelegate RequiredFieldValidationDelegate
         {
-            get 
+            get
             {
                 if (_requiredValidationdel == null)
                 {
@@ -46,12 +46,12 @@ namespace FieldValidationAPIClassLIbrary
                 }
                 return _stringLengthValidationdel;
             }
-        
+
         }
 
         public static DateValidationDelegate DateValidationDelegate
         {
-            get 
+            get
             {
                 if (_dateValidationdel == null)
                 {
@@ -93,11 +93,11 @@ namespace FieldValidationAPIClassLIbrary
             {
                 return true;
             }
-            else 
+            else
             {
                 return false;
             }
-                
+
         }
 
         private static bool StringFieldLengthValidationMethod(string fieldValue, int min, int max)
@@ -106,7 +106,7 @@ namespace FieldValidationAPIClassLIbrary
             {
                 return true;
             }
-            else 
+            else
             {
                 return false;
             }
@@ -138,7 +138,7 @@ namespace FieldValidationAPIClassLIbrary
             {
                 return true;
             }
-            else 
+            else
             {
                 return false;
             }

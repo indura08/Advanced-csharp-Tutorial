@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advanced-c#-tutorial", "Adv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClubMembershipApplicationPracticeProject", "Delegates\Mini-project-to-practice-delegates\ClubMembershipApplicationPracticeProject\ClubMembershipApplicationPracticeProject.csproj", "{6146E92B-E3BA-4CD7-A97B-3E2E04AD7698}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldValidationAPIClassLIbrary", "Delegates\Mini-project-to-practice-delegates\FieldValidationAPIClassLIbrary\FieldValidationAPIClassLIbrary.csproj", "{CF10827D-9E57-4A87-9FDA-FEEE5B7747C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "Delegates\Mini-project-to-practice-delegates\ClassLibrary1\ClassLibrary1.csproj", "{A549064B-35CF-4F62-997B-CAD897A9276C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{6146E92B-E3BA-4CD7-A97B-3E2E04AD7698}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6146E92B-E3BA-4CD7-A97B-3E2E04AD7698}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6146E92B-E3BA-4CD7-A97B-3E2E04AD7698}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF10827D-9E57-4A87-9FDA-FEEE5B7747C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF10827D-9E57-4A87-9FDA-FEEE5B7747C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF10827D-9E57-4A87-9FDA-FEEE5B7747C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF10827D-9E57-4A87-9FDA-FEEE5B7747C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A549064B-35CF-4F62-997B-CAD897A9276C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A549064B-35CF-4F62-997B-CAD897A9276C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A549064B-35CF-4F62-997B-CAD897A9276C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A549064B-35CF-4F62-997B-CAD897A9276C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

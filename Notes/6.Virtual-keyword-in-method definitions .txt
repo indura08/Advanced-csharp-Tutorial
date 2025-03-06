@@ -1,0 +1,97 @@
+The virtual keyword in C# is used in a base class to allow a method or property to be overridden in a derived (child) class.
+
+Why do we need virtual?
+------------------------
+
+It helps in polymorphism, allowing child classes to modify the behavior of methods from the parent class.
+
+Example: Virtual Method
+
+class Animal
+{
+    public virtual void MakeSound()  // 👈 virtual method
+    {
+        Console.WriteLine("Animal makes a sound.");
+    }
+}
+
+class Dog : Animal
+{
+    public override void MakeSound()  // 👈 overriding the virtual method
+    {
+        Console.WriteLine("Dog barks.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Animal myAnimal = new Dog();  
+        myAnimal.MakeSound();  // Output: Dog barks. ✅
+    }
+}
+
+Breaking it down:
+
+MakeSound in Animal is marked as virtual, meaning it can be changed in child classes.
+Dog overrides MakeSound, providing its own version.
+When we call MakeSound() on an Animal reference holding a Dog object, the overridden Dog version runs!
+
+Without virtual?
+-----------------
+
+If we remove virtual, then Dog cannot override MakeSound(), and the base class version will always be called.
+
+
+class Animal
+{
+    public void MakeSound()  // ❌ Not virtual
+    {
+        Console.WriteLine("Animal makes a sound.");
+    }
+}
+
+class Dog : Animal
+{
+    public void MakeSound()  // ❌ This is just a new method, not overriding
+    {
+        Console.WriteLine("Dog barks.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Animal myAnimal = new Dog();
+        myAnimal.MakeSound();  // Output: Animal makes a sound. ❌ Not the overridden one!
+    }
+}
+
+Since there's no virtual, the base class method runs instead of the Dog version.
+
+Key Points:
+
+✅ Virtual methods allow overriding in derived classes
+✅ The override keyword must be used in the child class
+✅ If a method is not virtual, it cannot be overridden
+✅ Polymorphism works properly with virtual methods
+
+
+Q: so to use polymorphism to use parent class methods and change it according to the child class needs we must use virtual type mehtod in the parent class, is that right?
+
+A: 
+
+Yes! You must use the virtual keyword in the parent class if you want child classes to be able to override the method and change its behavior.
+
+Without virtual, the method in the parent class cannot be overridden in the child class, and polymorphism won't work as expected.
+
+Key points:
+
+✅ Use virtual in the parent class if you want child classes to override the method;.
+✅ Use override in the child class to provide a new implementation.
+✅ This allows polymorphism, meaning the correct method runs based on the object type at runtime.
+
+
+

@@ -1,4 +1,5 @@
 ﻿using Advanced_c__tutorial.Delegates;
+using Advanced_c__tutorial.Delegates.Delegate_Covariance_and_Contravariance;
 
 namespace Advanced_c__tutorial
 {
@@ -53,7 +54,21 @@ namespace Advanced_c__tutorial
             DelegateExample4.DelegateAsArgument delegateAsArguement = new DelegateExample4.DelegateAsArgument(DelegateExample4.HelperMethod);
 
             DelegateExample4.Method1(delegateAsArguement, "Hello there 'Delegate as arguement class :)");
+            Console.WriteLine();
 
+            //Convariance and contravariance lesson
+            Console.WriteLine($"Covariance and Contravariance{Environment.NewLine}{new string('-', 30)}");
+
+            DelegateExample5.CarFactorydelegate carFactoryDelegate = CarFactory.ReturnEVCar;
+            Car iceCar = carFactoryDelegate(1, "Porsche");
+
+            Console.WriteLine($"Object Type : {iceCar.GetType}");
+            Console.WriteLine($"Car details: {iceCar.GetCarDetails()}");
+
+            Console.WriteLine("This is to test Program.cs file");
+
+        
+        
         }
     }
 }

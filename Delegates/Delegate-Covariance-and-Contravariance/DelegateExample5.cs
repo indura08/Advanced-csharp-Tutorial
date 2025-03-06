@@ -58,4 +58,8 @@ namespace Advanced_c__tutorial.Delegates.Delegate_Covariance_and_Contravariance
 
         }
     }
+
+    //SPECIAL-KEEP-THIS-IN-MIND 
+
+    //meke covarience ek enam method parameter type scn ek code kale nha eka note eke thiynwa blgnna 
 }

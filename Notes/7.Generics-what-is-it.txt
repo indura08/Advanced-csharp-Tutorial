@@ -1,0 +1,128 @@
+1️⃣ What are Generics?
+
+Generics allow you to write code that works with any data type without sacrificing type safety.
+
+Instead of writing code that only works for one data type, you can make your code flexible and reusable for multiple types (like int, string, bool, etc.).
+Generics help you avoid casting and type-related errors.
+
+2️⃣ Why Use Generics?
+
+Without generics, if you wanted to create a class for storing different types of data, you'd need to write separate classes for each type. With generics, you can write one class that can store any type of data.
+
+3️⃣ Basic Syntax of a Generic Class
+
+A generic class is a class that uses a placeholder (also called a type parameter) instead of a specific data type.
+
+class MyClass<T>
+{
+    public T Data { get; set; }
+
+    public void DisplayData()
+    {
+        Console.WriteLine("Data: " + Data);
+    }
+}
+
+
+<T>: This is a type parameter. It means that T will represent any data type (like int, string, etc.) when the class is used.
+
+T is just a name—common names are T, U, V, etc., but you can use any valid identifier.
+
+4️⃣ How to Use a Generic Class
+
+Let's say you want to create a class that stores any type of data. When you create an instance of this class, you specify the type you want to use.
+
+Example 1: Generic Class with int
+
+class MyClass<T>
+{
+    public T Data { get; set; }
+
+    public void DisplayData()
+    {
+        Console.WriteLine("Data: " + Data);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Using MyClass with int
+        MyClass<int> myIntClass = new MyClass<int>();
+        myIntClass.Data = 10;
+        myIntClass.DisplayData();  // Output: Data: 10
+
+        // Using MyClass with string
+        MyClass<string> myStringClass = new MyClass<string>();
+        myStringClass.Data = "Hello, Generics!";
+        myStringClass.DisplayData();  // Output: Data: Hello, Generics!
+    }
+}
+
+MyClass<int>: Here, we're saying that T is an int type for this instance of the class.
+MyClass<string>: Here, we're using string as the type for the class instance.
+
+5️⃣ Multiple Type Parameters
+
+A generic class can accept multiple type parameters. You can define more than one placeholder in the angle brackets.
+
+class MyClass<T, U>
+{
+    public T Data1 { get; set; }
+    public U Data2 { get; set; }
+
+    public void DisplayData()
+    {
+        Console.WriteLine("Data1: " + Data1);
+        Console.WriteLine("Data2: " + Data2);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        MyClass<int, string> myClass = new MyClass<int, string>();
+        myClass.Data1 = 10;
+        myClass.Data2 = "Hello";
+        myClass.DisplayData();
+        // Output:
+        // Data1: 10
+        // Data2: Hello
+    }
+}
+
+
+Here, T is an int and U is a string for this instance.
+
+6️⃣ Constraints on Generic Types
+
+Sometimes you want to limit what types can be used for a generic parameter. You can constrain the type parameter to only accept certain types or interfaces.
+
+Example: Constrain T to be a class or have a parameterless constructor
+
+class MyClass<T> where T : class, new()
+{
+    public T Data { get; set; }
+
+    public void CreateAndDisplayData()
+    {
+        Data = new T();  // Creates an instance of type T
+        Console.WriteLine("Data is created and displayed.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        MyClass<string> myClass = new MyClass<string>();
+        myClass.CreateAndDisplayData();  // Data is created and displayed.
+    }
+}
+
+where T : class, new(): This restricts T to be a reference type (class) and forces it to have a parameterless constructor (new()).
+
+
+

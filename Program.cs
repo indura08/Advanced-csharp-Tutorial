@@ -1,5 +1,6 @@
 ﻿using Advanced_c__tutorial.Delegates;
 using Advanced_c__tutorial.Delegates.Delegate_Covariance_and_Contravariance;
+using Advanced_c__tutorial.Delegates.Delegates_func_Action_Predicate;
 
 namespace Advanced_c__tutorial
 {
@@ -57,6 +58,8 @@ namespace Advanced_c__tutorial
             Console.WriteLine();
 
             //Convariance and contravariance lesson
+          //---------------------------------------------
+
             Console.WriteLine($"Covariance and Contravariance{Environment.NewLine}{new string('-', 30)}");
 
             DelegateExample5.CarFactorydelegate carFactoryDelegate = CarFactory.ReturnEVCar;
@@ -65,10 +68,26 @@ namespace Advanced_c__tutorial
             Console.WriteLine($"Object Type : {iceCar.GetType}");
             Console.WriteLine($"Car details: {iceCar.GetCarDetails()}");
 
-            Console.WriteLine("This is to test Program.cs file");
+            Console.WriteLine();
 
-        
-        
+            //func-Action-Predicate
+        //-----------------------------
+
+            Console.WriteLine($"Func-Action-Predicate{Environment.NewLine}{new string('-', 30)}");
+
+            MathClass mathclass = new MathClass();
+
+            Func<int, int, int> calculate = mathclass.Sum;
+            //methna int 3 k thiynne palaweni int deka parameter type ekt , anthima 3 weni int ek awilla return type ek 
+            
+            int result = calculate(3, 11);
+            Console.WriteLine($"result is : {result}");
+            
+            Func<int , int , int> cal2 = (a, b) => a + b;
+            //mehma anonymous function ekak define krnnath puluwan
+
+
+
         }
     }
 }

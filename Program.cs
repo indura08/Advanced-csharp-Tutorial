@@ -75,6 +75,8 @@ namespace Advanced_c__tutorial
 
             Console.WriteLine($"Func-Action-Predicate{Environment.NewLine}{new string('-', 30)}");
 
+            //******** func
+
             MathClass mathclass = new MathClass();
 
             Func<int, int, int> calculate = mathclass.Sum;
@@ -86,7 +88,28 @@ namespace Advanced_c__tutorial
             Func<int , int , int> cal2 = (a, b) => a + b;
             //mehma anonymous function ekak define krnnath puluwan
 
+            Console.WriteLine();
 
+            //********Action
+
+            DelegatePractice6.DisplayEmployeeDetails(1, "Eliana", "Vivienne", 75000, 'M');
+
+            //******Predicate
+            Console.WriteLine();
+
+            DelegatePractice6 employeeScene = new DelegatePractice6();
+
+            employeeScene.employees.Add(new Employee { Id = 1, FirstName = "Eliana vivienne", LastName = "Pererra", AnnualSalary = 60000, IsManager = false });
+            employeeScene.employees.Add(new Employee { Id = 2, FirstName = "Eliana vivienne", LastName = "Auntie", AnnualSalary = 80000, IsManager = true });
+            employeeScene.employees.Add(new Employee { Id = 3, FirstName = "Eliana vivienne", LastName = "Mom", AnnualSalary = 450000, IsManager = true });
+            employeeScene.employees.Add(new Employee { Id = 4, FirstName = "Eliana vivienne", LastName = "Cousin Sister", AnnualSalary = 6000, IsManager = false });
+
+            List<Employee> EmployeeFilter = employeeScene.FilterEmployee(employeeScene.employees, e => e.AnnualSalary > 75000);
+
+            foreach (Employee employee1 in EmployeeFilter)
+            {
+                Console.WriteLine($"Id: {employee1.Id}{Environment.NewLine}First Name: {employee1.FirstName}{Environment.NewLine}Last name:{employee1.LastName}{Environment.NewLine}Annual Salary: {employee1.AnnualSalary}{Environment.NewLine}IsManager: {employee1.IsManager}");
+            }
 
         }
     }

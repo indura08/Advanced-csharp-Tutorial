@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "Delegates\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePretendCompanyApplication-For-LINQ-Practice", "LINQ\Introduction\ThePretendCompanyApplication-For-LINQ-Practice\ThePretendCompanyApplication-For-LINQ-Practice.csproj", "{5B4D9C3F-840C-4282-96F1-0901D5E6073B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCPData", "LINQ\Introduction\ThePretendCompanyApplication-For-LINQ-Practice\TCPData\TCPData.csproj", "{B558F790-C5AC-44B6-A949-CD97D5CF2E09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCPExtension", "LINQ\Introduction\ThePretendCompanyApplication-For-LINQ-Practice\TCPExtension\TCPExtension.csproj", "{0F9EF991-3E92-4CEF-BDB3-ADF9599C7382}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{5B4D9C3F-840C-4282-96F1-0901D5E6073B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B4D9C3F-840C-4282-96F1-0901D5E6073B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B4D9C3F-840C-4282-96F1-0901D5E6073B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B558F790-C5AC-44B6-A949-CD97D5CF2E09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B558F790-C5AC-44B6-A949-CD97D5CF2E09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B558F790-C5AC-44B6-A949-CD97D5CF2E09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B558F790-C5AC-44B6-A949-CD97D5CF2E09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F9EF991-3E92-4CEF-BDB3-ADF9599C7382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F9EF991-3E92-4CEF-BDB3-ADF9599C7382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F9EF991-3E92-4CEF-BDB3-ADF9599C7382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F9EF991-3E92-4CEF-BDB3-ADF9599C7382}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

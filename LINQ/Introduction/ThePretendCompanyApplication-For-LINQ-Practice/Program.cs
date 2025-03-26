@@ -1,12 +1,26 @@
-﻿namespace ThePretendCompanyApplication_For_LINQ_Practice
+﻿using TCPData;
+using TCPExtension;
+
+namespace ThePretendCompanyApplication_For_LINQ_Practice
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            //heta blnna gadi mulinma blnna iQueriable and Ienumerable deka saha e deke weasa
-            //9:21:30 nwattuwe
+            List<Employee> employeeList = new List<Employee>();
+
+            var filteredEmployees = TCPExtension.Extension.Filter(employeeList, emp => emp.IsManager == true);
+
+            foreach (var emp in filteredEmployees)
+            {
+                Console.WriteLine($"FirstName : {emp.FirstName}");
+                Console.WriteLine($"FirstName : {emp.LastName}");
+                Console.WriteLine($"FirstName : {emp.Annualsalary}");
+                Console.WriteLine($"FirstName : {emp.IsManager}");
+            }
+
+            Console.ReadKey();
+        
         }
     }
 }

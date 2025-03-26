@@ -1,0 +1,101 @@
+Great question! Func, Action, and Predicate are built-in generic delegates in C#. They make it easier to use delegates without defining custom delegate types. Let's break them down simply.
+
+1️⃣ Func<T, TResult>
+------------------
+
+👉 Used when a method has a return value.
+
+Can take 0 to 16 parameters and returns a value.
+
+The last type parameter is always the return type.
+
+Func<int, int, int> add = (a, b) => a + b;
+Console.WriteLine(add(5, 3));  // Output: 8
+
+💡 Here, Func<int, int, int> means:
+
+Takes two int parameters (a and b).
+
+Returns an int.
+
+2️⃣ Action<T>
+-------------
+
+👉 Used when a method performs an action but does NOT return a value (void).
+
+Can take 0 to 16 parameters but returns void.
+
+Action<string> greet = name => Console.WriteLine("Hello, " + name);
+greet("John");  // Output: Hello, John
+
+💡 Here, Action<string> means:
+
+Takes one string parameter.
+
+Returns nothing (void).
+
+3️⃣ Predicate<T>
+---------------
+
+👉 Used when a method returns true or false (boolean).
+
+Always takes one parameter and returns a bool.
+
+Predicate<int> isEven = number => number % 2 == 0;
+Console.WriteLine(isEven(10));  // Output: True
+Console.WriteLine(isEven(7));   // Output: False
+
+
+💡 Here, Predicate<int> means:
+
+Takes one int parameter.
+
+Returns a bool (true or false).
+
+
+Where are They Used?
+--------------------
+
+Func<T, TResult> → Used in LINQ (Select, Where, etc.).
+
+Action<T> → Used for event handlers and callbacks.
+
+Predicate<T> → Used in filtering (List<T>.Find, List<T>.Exists).
+
+Final Example: Using All Three
+-------------------------------
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+
+        // Func example (doubles each number)
+        Func<int, int> doubleNumber = n => n * 2;
+        numbers.ForEach(n => Console.WriteLine(doubleNumber(n)));
+
+        // Action example (prints each number)
+        Action<int> printNumber = n => Console.Write(n + " ");
+        numbers.ForEach(printNumber);  // Output: 1 2 3 4 5 6
+
+        // Predicate example (finds even numbers)
+        Predicate<int> isEven = n => n % 2 == 0;
+        List<int> evenNumbers = numbers.FindAll(isEven);
+        Console.WriteLine("\nEven Numbers: " + string.Join(", ", evenNumbers));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

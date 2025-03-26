@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClubMembershipApplicationPr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "Delegates\Mini-project-to-practice-delegates\ClassLibrary1\ClassLibrary1.csproj", "{A549064B-35CF-4F62-997B-CAD897A9276C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePretendCompanyApplication-For-LINQ-Practice", "LINQ\Introduction\ThePretendCompanyApplication-For-LINQ-Practice\ThePretendCompanyApplication-For-LINQ-Practice.csproj", "{5B4D9C3F-840C-4282-96F1-0901D5E6073B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A549064B-35CF-4F62-997B-CAD897A9276C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A549064B-35CF-4F62-997B-CAD897A9276C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A549064B-35CF-4F62-997B-CAD897A9276C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B4D9C3F-840C-4282-96F1-0901D5E6073B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4D9C3F-840C-4282-96F1-0901D5E6073B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4D9C3F-840C-4282-96F1-0901D5E6073B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4D9C3F-840C-4282-96F1-0901D5E6073B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

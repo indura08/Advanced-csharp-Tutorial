@@ -1,0 +1,44 @@
+Your Code (Making Lists Smarter)
+
+Normally, a List in C# does not have a Filter method. But by using this List<T>, you are adding a new method to all lists.
+
+Let’s look at two versions of the same function:
+
+Version 1: Without this (Normal Method)
+
+
+public static List<int> Filter(List<int> numbers, Func<int, bool> condition)
+{
+    List<int> result = new List<int>();
+
+    foreach (var num in numbers)
+    {
+        if (condition(num)) // If the condition is true, add it to the result
+        {
+            result.Add(num);
+        }
+    }
+    
+    return result;
+}
+
+
+How do we use this?
+
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+
+// Calling the function normally
+List<int> evenNumbers = Filter(numbers, x => x % 2 == 0);
+
+Version 2: With this (Extension Method)
+
+public static List<int> Filter(this List<int> numbers, Func<int, bool> condition)
+
+Here, this List<int> numbers adds the Filter method to all lists in C#.
+
+Now, you can use it like a built-in method:
+
+List<int> evenNumbers = numbers.Filter(x => x % 2 == 0);
+
+
+

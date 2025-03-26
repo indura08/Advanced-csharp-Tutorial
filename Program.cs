@@ -1,6 +1,8 @@
 ﻿using Advanced_c__tutorial.Delegates;
+using Advanced_c__tutorial.Delegates.Delegate_Asynchronous_method_calls;
 using Advanced_c__tutorial.Delegates.Delegate_Covariance_and_Contravariance;
 using Advanced_c__tutorial.Delegates.Delegates_func_Action_Predicate;
+using System.Net;
 
 namespace Advanced_c__tutorial
 {
@@ -109,6 +111,70 @@ namespace Advanced_c__tutorial
             foreach (Employee employee1 in EmployeeFilter)
             {
                 Console.WriteLine($"Id: {employee1.Id}{Environment.NewLine}First Name: {employee1.FirstName}{Environment.NewLine}Last name:{employee1.LastName}{Environment.NewLine}Annual Salary: {employee1.AnnualSalary}{Environment.NewLine}IsManager: {employee1.IsManager}");
+            }
+
+            //delagte example-7 async operations with delegates
+            Console.WriteLine($"Delegate example: 7 async operations with delegates{Environment.NewLine}{new string('-', 30)}");
+
+            // Create the delegate that will process the results of the
+            // asynchronous request.
+            AsyncCallback callBack = new AsyncCallback(DelegateExample7.ProcessDnsInformation);
+            string host;
+
+            do
+            {
+                Console.WriteLine(" Enter the name of a computer or <enter> to finish");
+                host = Console.ReadLine();
+
+                if (host.Length > 0)
+                {
+                    //increment request counter in theradsafe manner
+                    Interlocked.Increment(ref DelegateExample7.requestCounter);
+                    //start the asyncchronous request for dns information
+                    Dns.BeginGetHostEntry(host, callBack, host);
+                }
+            } while (host.Length > 0);
+
+            //// The user has entered all of the host names for lookup.
+            // Now wait until the threads complete.
+
+            while (DelegateExample7.requestCounter > 0)
+            {
+                DelegateExample7.UpdateUserInterface();
+            }
+
+            //display the results
+            for (int i = 0; i < DelegateExample7.hostNames.Count; i++)
+            {
+                object data = DelegateExample7.hostData[i];
+                string message = data as string;
+
+                if (message != null)
+                {
+                    Console.WriteLine($"Request for {DelegateExample7.hostNames[i]} returned message: {message}");
+                    continue;
+                }
+
+                // Get the results.
+                IPHostEntry h = (IPHostEntry)data;
+                string[] aliases = h.Aliases;
+                IPAddress[] addresses = h.AddressList;
+                if (aliases.Length > 0)
+                {
+                    Console.WriteLine($"Aliases for {DelegateExample7.hostNames[i]}");
+                    for (int j = 0; j < aliases.Length; j++)
+                    {
+                        Console.WriteLine($"{aliases[j]}");
+                    }
+                }
+                if (addresses.Length > 0)
+                {
+                    Console.WriteLine($"Addresses for {DelegateExample7.hostNames[i]}");
+                    for (int k = 0; k < addresses.Length; k++)
+                    {
+                        Console.WriteLine("{0}", addresses[k].ToString());
+                    }
+                }
             }
 
         }

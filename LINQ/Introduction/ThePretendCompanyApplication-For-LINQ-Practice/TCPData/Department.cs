@@ -12,7 +12,5 @@ namespace TCPData
         public string ShortName { get; set; } = null!;
         public string LongName { get; set; } = null!;
 
-        //Me project ek aaye wenama hdnna 
-
     }
 }

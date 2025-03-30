@@ -7,8 +7,59 @@
             List<Employee> employeeLIst = Data.GetEmployees();
             List<Department> departmentList = Data.GetDepartment();
 
-            //mke ithuru tika balnna 9:59:47n nwattuwe- code tika ghngnna hariytm me wlewatm tune krla
+            //LINQ-using method syntax
+            var resultMethodSyntax = employeeLIst.Select(e => new
+            {
+                FullName = e.FirstName + " " + e.LastName,
+                AnnualSalary = e.Annualsalary
+            }).Where(e => e.AnnualSalary > 50000);
+
+            foreach (var item in resultMethodSyntax)
+            {
+                Console.WriteLine($"{item.FullName,-20} {item.AnnualSalary,10}");
+            }
+
+            Console.WriteLine($"{new string('-', 40)}");
+                
+            //LINQ- using query syntax
+            var resultQuerySyntax = from emp in employeeLIst
+                         where emp.Annualsalary > 50000     //where eka daalath puluwan nodath puluwan
+                         select new
+                         {
+                             FullName = emp.FirstName + " " + emp.LastName,
+                             AnnualSalary = emp.Annualsalary
+                         };
+
+            foreach (var item in resultQuerySyntax)
+            {
+                Console.WriteLine($"{item.FullName, -10} {item.AnnualSalary, 20}");
+            }
+                         
+
+
+
+
         }
+
+        public static class EnumerableCollectionExtensionMethods
+        {
+            public static IEnumerable<Employee> GetHighSalariedemployees(this IEnumerable<Employee> employees)
+            {
+                foreach (Employee emp in employees)
+                {
+                    Console.WriteLine($"Accessing employee: {emp.FirstName + " " + emp.LastName}");
+
+                    if (emp.Annualsalary >= 50000)
+                    {
+                        yield return emp;
+                    }
+
+                }
+                
+            }
+            
+        }
+
         public class Employee
         {
             public int Id { get; set; }

@@ -1,0 +1,89 @@
+🔍 What Does the yield Keyword Do?
+-------------------------------------
+
+The yield keyword in C# is used in iterators to return values one at a time without storing them in memory all at once. It helps optimize performance by allowing lazy evaluation.
+
+🚀 Understanding yield return in Your Code
+---------------------------------------------
+
+Your Code:
+public static class EnumerableCollectionExtensionMethods
+{
+    public static IEnumerable<Employee> GetHighSalariedemployees(this IEnumerable<Employee> employees)
+    {
+        foreach (Employee emp in employees)
+        {
+            Console.WriteLine($"Accessing employee: {emp.FirstName + " " + emp.LastName}");
+
+            if (emp.Annualsalary >= 50000)
+            {
+                yield return emp;
+            }
+        }
+    }
+}
+
+
+🔹 What Happens Here?
+-------------------------
+
+This is an iterator method. Instead of returning a full collection, it uses yield return to return one employee at a time when needed.
+
+When yield return emp; is hit, it pauses execution and returns emp to the caller.
+
+The method remembers where it left off and continues from that point when the next element is requested.
+
+
+📌 What Happens Internally?
+-----------------------------
+
+Code That Calls GetHighSalariedemployees()
+
+var result = employeeList.GetHighSalariedemployees();
+
+foreach (var emp in result)
+{
+    Console.WriteLine($"{emp.FirstName} {emp.LastName}");
+}
+
+Execution Flow
+
+1️⃣ The foreach loop starts iterating over result.
+2️⃣ The GetHighSalariedemployees() method begins executing.
+3️⃣ For each emp in employeeList:
+
+It prints "Accessing employee: John Doe".
+
+If AnnualSalary >= 50000, it returns that employee using yield return.
+
+Execution is paused at that point until the next iteration of the loop.
+
+4️⃣ The loop continues, calling the method again from where it left off.
+
+🚀 General Explanation of yield return
+---------------------------------------
+
+1. yield return returns one value at a time instead of returning the whole collection.
+
+2. The execution is paused after yield return, and it resumes from the same point in the next iteration.
+
+3. This makes it memory-efficient because elements are processed only when needed (lazy evaluation).
+
+4. It is commonly used with IEnumerable<T> in LINQ, streaming large data, or generating sequences.
+
+
+* 💡 yield break - Stopping an Iterator
+------------------------------------------
+
+If you want to stop iteration early, use yield break:
+
+
+public static IEnumerable<int> GenerateNumbers()
+{
+    yield return 1;
+    yield return 2;
+    yield break;  // Stops iteration
+    yield return 3;  // This will never be reached
+}
+
+

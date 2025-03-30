@@ -1,0 +1,33 @@
+1️⃣ What is Query Syntax?
+------------------------
+
+Looks like SQL (Structured Query Language).
+
+Uses from, where, select, etc. (like a SQL query).
+
+Easier to read if you're used to SQL queries.
+
+Example:
+
+var employeesInIT = from emp in employees
+                    where emp.Department == "IT"
+                    select emp;
+
+📝 Think of it like writing an SQL query inside C#!
+
+2️⃣ What is Method Syntax?
+-----------------------
+
+Uses LINQ methods like Where(), Select(), OrderBy(), etc.
+
+Looks like method chaining in C#.
+
+More flexible and often preferred by developers.
+
+✅ Example of Method Syntax:
+
+var employeesInIT = employees.Where(emp => emp.Department == "IT");
+
+📝 Think of it as calling a bunch of C# methods one after another!
+
+

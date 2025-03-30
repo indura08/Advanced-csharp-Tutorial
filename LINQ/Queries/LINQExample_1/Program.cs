@@ -34,140 +34,186 @@
             {
                 Console.WriteLine($"{item.FullName, -10} {item.AnnualSalary, 20}");
             }
-                         
 
+            Console.WriteLine($"Defered execution example {Environment.NewLine}{new string('-', 40)}");
 
+            //Defered execution example
+            var results = from emp in employeeLIst.GetHighSalariedemployees()
+                         select new
+                         {
+                             FullName = emp.FirstName,
+                             AnnualSalary = emp.Annualsalary
+                         };
 
+            //employeeLIst.Add(new Employee
+            //{
+            //    Id = 5,
+            //    FirstName = "Upasith",
+            //    LastName = "Perera",
+            //    Annualsalary = 6000000,
+            //    IsManager = false,
+            //    DepartmentId = 1
+            //});
+
+            foreach (var item in results)
+            {
+                Console.WriteLine($"{item.FullName,-20} {item.AnnualSalary,10}");
+            }
+
+            Console.WriteLine($"Immediate execution example {Environment.NewLine}{new string('-', 40)}");
+
+            //Immediate execution
+            var resultImmediateexecutionEample = (from emp in employeeLIst.GetHighSalariedemployees()
+                                                 select new
+                                                 {
+                                                     FullName = emp.FirstName + " " + emp.LastName,
+                                                     Annualsalary = emp.Annualsalary
+                                                 }).ToList();
+
+            employeeLIst.Add(new Employee
+            {
+                Id = 5,
+                FirstName = "Upasith",
+                LastName = "Perera",
+                Annualsalary = 6000000,
+                IsManager = false,
+                DepartmentId = 1
+            });
+
+            foreach (var item in results)
+            {
+                Console.WriteLine($"{item.FullName,-20} {item.AnnualSalary,10}");
+            }
 
         }
+    }
 
-        public static class EnumerableCollectionExtensionMethods
+    public static class EnumerableCollectionExtensionMethods
+    {
+        public static IEnumerable<Employee> GetHighSalariedemployees(this IEnumerable<Employee> employees)
         {
-            public static IEnumerable<Employee> GetHighSalariedemployees(this IEnumerable<Employee> employees)
+            foreach (Employee emp in employees)
             {
-                foreach (Employee emp in employees)
+                Console.WriteLine($"Accessing employee: {emp.FirstName + " " + emp.LastName}");
+
+                if (emp.Annualsalary >= 50000)
                 {
-                    Console.WriteLine($"Accessing employee: {emp.FirstName + " " + emp.LastName}");
-
-                    if (emp.Annualsalary >= 50000)
-                    {
-                        yield return emp;
-                    }
-
+                    yield return emp;
                 }
-                
+
             }
-            
-        }
-
-        public class Employee
-        {
-            public int Id { get; set; }
-            public string FirstName { get; set; } = null!;
-            public string LastName { get; set; } = null!;
-            public decimal Annualsalary { get; set; }
-            public bool IsManager { get; set; }
-            public int DepartmentId { get; set; }
-        }
-
-        public class Department
-        {
-            public int Id { get; set; }
-            public string ShortName { get; set; } = null!;
-            public string LongName { get; set; } = null!;
 
         }
 
-        public static class Data
+    }
+
+    public class Employee
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
+        public decimal Annualsalary { get; set; }
+        public bool IsManager { get; set; }
+        public int DepartmentId { get; set; }
+    }
+
+    public class Department
+    {
+        public int Id { get; set; }
+        public string ShortName { get; set; } = null!;
+        public string LongName { get; set; } = null!;
+
+    }
+
+    public static class Data
+    {
+        public static List<Employee> GetEmployees()
         {
-            public static List<Employee> GetEmployees()
+            List<Employee> employees = new List<Employee>();
+
+            Employee employee = new Employee
             {
-                List<Employee> employees = new List<Employee>();
+                Id = 1,
+                FirstName = "Indura",
+                LastName = "perera",
+                Annualsalary = 220000.00m,
+                IsManager = false,
+                DepartmentId = 1
+            };
 
-                Employee employee = new Employee
-                {
-                    Id = 1,
-                    FirstName = "Indura",
-                    LastName = "perera",
-                    Annualsalary = 220000.00m,
-                    IsManager = false,
-                    DepartmentId = 1
-                };
+            employees.Add(employee);
 
-                employees.Add(employee);
-
-                employee = new Employee
-                {
-                    Id = 2,
-                    FirstName = "Rashmi",
-                    LastName = "perera",
-                    Annualsalary = 20000.00m,
-                    IsManager = false,
-                    DepartmentId = 2
-                };
-
-                employees.Add(employee);
-
-                employee = new Employee
-                {
-                    Id = 3,
-                    FirstName = "Eliana",
-                    LastName = "Vivienne",
-                    Annualsalary = 60000.00m,
-                    IsManager = true,
-                    DepartmentId = 2
-                };
-
-                employees.Add(employee);
-
-                employee = new Employee
-                {
-                    Id = 4,
-                    FirstName = "Melina",
-                    LastName = "De silva",
-                    Annualsalary = 40000.00m,
-                    IsManager = true,
-                    DepartmentId = 3
-                };
-
-                employees.Add(employee);
-
-                return employees;
-            }
-
-            public static List<Department> GetDepartment()
+            employee = new Employee
             {
-                List<Department> departments = new List<Department>();
+                Id = 2,
+                FirstName = "Rashmi",
+                LastName = "perera",
+                Annualsalary = 20000.00m,
+                IsManager = false,
+                DepartmentId = 2
+            };
 
-                Department department = new Department
-                {
-                    Id = 1,
-                    ShortName = "IT",
-                    LongName = "Information Technology"
-                };
+            employees.Add(employee);
 
-                departments.Add(department);
+            employee = new Employee
+            {
+                Id = 3,
+                FirstName = "Eliana",
+                LastName = "Vivienne",
+                Annualsalary = 60000.00m,
+                IsManager = true,
+                DepartmentId = 2
+            };
 
-                department = new Department
-                {
-                    Id = 2,
-                    ShortName = "HR",
-                    LongName = "Human Resource"
-                };
+            employees.Add(employee);
 
-                departments.Add(department);
+            employee = new Employee
+            {
+                Id = 4,
+                FirstName = "Melina",
+                LastName = "De silva",
+                Annualsalary = 40000.00m,
+                IsManager = true,
+                DepartmentId = 3
+            };
 
-                department = new Department
-                {
-                    Id = 1,
-                    ShortName = "FN",
-                    LongName = "Finance"
-                };
+            employees.Add(employee);
 
-                departments.Add(department);
+            return employees;
+        }
 
-                return departments;
-            }
+        public static List<Department> GetDepartment()
+        {
+            List<Department> departments = new List<Department>();
+
+            Department department = new Department
+            {
+                Id = 1,
+                ShortName = "IT",
+                LongName = "Information Technology"
+            };
+
+            departments.Add(department);
+
+            department = new Department
+            {
+                Id = 2,
+                ShortName = "HR",
+                LongName = "Human Resource"
+            };
+
+            departments.Add(department);
+
+            department = new Department
+            {
+                Id = 1,
+                ShortName = "FN",
+                LongName = "Finance"
+            };
+
+            departments.Add(department);
+
+            return departments;
         }
     }
 }

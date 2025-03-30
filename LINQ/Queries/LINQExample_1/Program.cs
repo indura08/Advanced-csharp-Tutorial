@@ -8,33 +8,34 @@
             List<Department> departmentList = Data.GetDepartment();
 
             //LINQ-using method syntax
-            var resultMethodSyntax = employeeLIst.Select(e => new
-            {
-                FullName = e.FirstName + " " + e.LastName,
-                AnnualSalary = e.Annualsalary
-            }).Where(e => e.AnnualSalary > 50000);
+            //var resultMethodSyntax = employeeLIst.Select(e => new
+            //{
+            //    FullName = e.FirstName + " " + e.LastName,
+            //    AnnualSalary = e.Annualsalary
+            //}).Where(e => e.AnnualSalary > 50000);
 
-            foreach (var item in resultMethodSyntax)
-            {
-                Console.WriteLine($"{item.FullName,-20} {item.AnnualSalary,10}");
-            }
+            //foreach (var item in resultMethodSyntax)
+            //{
+            //    Console.WriteLine($"{item.FullName,-20} {item.AnnualSalary,10}");
+            //}
 
-            Console.WriteLine($"{new string('-', 40)}");
+            //Console.WriteLine($"{new string('-', 40)}");
                 
-            //LINQ- using query syntax
-            var resultQuerySyntax = from emp in employeeLIst
-                         where emp.Annualsalary > 50000     //where eka daalath puluwan nodath puluwan
-                         select new
-                         {
-                             FullName = emp.FirstName + " " + emp.LastName,
-                             AnnualSalary = emp.Annualsalary
-                         };
+            ////LINQ- using query syntax
+            //var resultQuerySyntax = from emp in employeeLIst
+            //             where emp.Annualsalary > 50000     //where eka daalath puluwan nodath puluwan
+            //             select new
+            //             {
+            //                 FullName = emp.FirstName + " " + emp.LastName,
+            //                 AnnualSalary = emp.Annualsalary
+            //             };
 
-            foreach (var item in resultQuerySyntax)
-            {
-                Console.WriteLine($"{item.FullName, -10} {item.AnnualSalary, 20}");
-            }
+            //foreach (var item in resultQuerySyntax)
+            //{
+            //    Console.WriteLine($"{item.FullName, -10} {item.AnnualSalary, 20}");
+            //}
 
+            Console.WriteLine();
             Console.WriteLine($"Defered execution example {Environment.NewLine}{new string('-', 40)}");
 
             //Defered execution example
@@ -45,21 +46,22 @@
                              AnnualSalary = emp.Annualsalary
                          };
 
-            //employeeLIst.Add(new Employee
-            //{
-            //    Id = 5,
-            //    FirstName = "Upasith",
-            //    LastName = "Perera",
-            //    Annualsalary = 6000000,
-            //    IsManager = false,
-            //    DepartmentId = 1
-            //});
+            employeeLIst.Add(new Employee
+            {
+                Id = 5,
+                FirstName = "Dulyan",
+                LastName = "De silva",
+                Annualsalary = 96000000,
+                IsManager = false,
+                DepartmentId = 1
+            });
 
             foreach (var item in results)
             {
                 Console.WriteLine($"{item.FullName,-20} {item.AnnualSalary,10}");
             }
 
+            Console.WriteLine();
             Console.WriteLine($"Immediate execution example {Environment.NewLine}{new string('-', 40)}");
 
             //Immediate execution
@@ -67,7 +69,7 @@
                                                  select new
                                                  {
                                                      FullName = emp.FirstName + " " + emp.LastName,
-                                                     Annualsalary = emp.Annualsalary
+                                                     AnnualSalary = emp.Annualsalary
                                                  }).ToList();
 
             employeeLIst.Add(new Employee
@@ -80,7 +82,7 @@
                 DepartmentId = 1
             });
 
-            foreach (var item in results)
+            foreach (var item in resultImmediateexecutionEample)
             {
                 Console.WriteLine($"{item.FullName,-20} {item.AnnualSalary,10}");
             }

@@ -1,0 +1,145 @@
+📌 What are Query Operators (Standard Query Operators) in C#?
+----------------------------------------------------------------
+
+In simple terms, Query Operators (or Standard Query Operators) are built-in LINQ methods that help us filter, sort, group, and manipulate data in collections like lists, arrays, and databases.
+
+These operators make it easy to write SQL-like queries in C#.
+
+
+🛠️ Types of Query Operators in LINQ
+-------------------------------------
+
+There are different types of query operators, and they can be grouped into categories:
+
+1️⃣ Filtering Operators (Select specific items)
+
+These are used to filter data based on conditions.
+
+Operator		Description				Example
+------------------------------------------------------------------------------------------------
+Where		Selects elements that match a condition.	numbers.Where(n => n > 10)
+Take		Takes the first N elements.			numbers.Take(5)
+Skip		Skips the first N elements.			numbers.Skip(3)
+
+
+int[] numbers = { 2, 5, 8, 12, 15 };
+var filteredNumbers = numbers.Where(n => n > 5); // [8, 12, 15]
+
+
+2️⃣ Projection Operators (Transform data)
+------------------------------------
+
+These change how data looks by selecting specific fields.
+
+Operator				Description					Example
+------------------------------------------------------------------------------------------------------------------------
+
+Select				Picks certain properties from each item.	employees.Select(e => e.Name)
+SelectMany			Flattens nested collections into one list.	companies.SelectMany(c => c.Employees)
+
+
+var employeeNames = employees.Select(e => e.FirstName);
+
+3️⃣ Sorting Operators (Arrange items in order)
+
+These are used to sort data in ascending or descending order.
+
+Operator			Description				Example
+------------------------------------------------------------------------------------------------------------------------
+OrderBy			Sorts in ascending order.		numbers.OrderBy(n => n)
+OrderByDescending	Sorts in descending order.		numbers.OrderByDescending(n => n)
+ThenBy			Adds secondary sorting.			employees.OrderBy(e => e.Dept).ThenBy(e => e.Name)
+
+var sortedNumbers = numbers.OrderBy(n => n);
+
+
+4️⃣ Grouping Operators (Group similar items together)
+-----------------------------------------------
+
+These group data into categories.
+
+Operator		Description				Example
+----------------------------------------------------------------------------------------------
+
+GroupBy			Groups data based on a key.	employees.GroupBy(e => e.Department)
+
+
+5️⃣ Join Operators (Combine data from two collections)
+------------------------------------------------
+These are used to merge data from different collections.
+
+Operator			Description			Example
+------------------------------------------------------------------------------------------------------------------------------
+
+Join			Performs an inner join.			empList.Join(deptList, e => e.DeptId, d => d.Id, ...)
+GroupJoin		Groups related records together.	deptList.GroupJoin(empList, d => d.Id, e => e.DeptId, ...)
+
+
+example: var empDept = employees.Join(
+    departments,
+    e => e.DepartmentId,
+    d => d.Id,
+    (e, d) => new { e.Name, d.DepartmentName }
+);
+
+
+
+6️⃣ Aggregation Operators (Summarize data)
+---------------------------------------
+
+These perform calculations on collections.
+
+Operator		Description		Example
+-----------------------------------------------------------------
+Count			Counts elements.	numbers.Count()
+Sum			Adds numbers.		numbers.Sum()
+Average			Finds the average.	numbers.Average()
+Min / Max		Finds min/max values.	numbers.Min()
+
+
+example: int totalEmployees = employees.Count();
+
+
+7️⃣ Quantifier Operators (Check conditions)
+-------------------------------------
+
+These check if any or all elements satisfy a condition.
+
+Operator	Description				Example
+-----------------------------------------------------------------------------------
+
+Any		Returns true if any item matches.	numbers.Any(n => n > 50)
+All		Returns true if all items match.	numbers.All(n => n > 0)
+
+
+example: bool hasHighSalaries = employees.Any(e => e.Salary > 100000);
+
+8️⃣ Element Operators (Select specific items)
+
+These select specific elements from a collection.
+
+Operator		Description				Example
+----------------------------------------------------------------------------------------
+First			Returns the first item.			numbers.First()
+FirstOrDefault		Returns the first item or null.		numbers.FirstOrDefault()
+Last			Returns the last item.			numbers.Last()
+
+
+example: var firstEmployee = employees.First();
+
+9️⃣ Set Operators (Remove duplicates & find differences)
+-----------------------------------------------
+
+These work like set operations in math.
+
+Operator			Description						Example
+-------------------------------------------------------------------------------------------------------------------
+
+Distinct			Removes duplicates.					numbers.Distinct()
+Except				Finds elements in one list but not in another.		list1.Except(list2)
+Intersect			Finds common elements.					list1.Intersect(list2)
+
+
+example: var uniqueNumbers = numbers.Distinct();
+
+

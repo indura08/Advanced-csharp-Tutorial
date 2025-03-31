@@ -105,7 +105,7 @@ namespace LINQExample_1
                     }
                     
                     );
-            //nukna join ghuwoth enne inner join withri
+            //nikna join ghuwoth enne inner join withri
 
             foreach (var item in resultJoinMethodSyntax)
             {

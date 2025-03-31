@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="LINQ\Introduction\" />
+    <Folder Include="LINQ\Operators\" />
   </ItemGroup>
 
 </Project>

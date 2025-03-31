@@ -1,4 +1,7 @@
-﻿namespace LINQExample_1
+﻿using System;
+using System.Text.RegularExpressions;
+
+namespace LINQExample_1
 {
     internal class Program
     {
@@ -49,12 +52,12 @@
             employeeLIst.Add(new Employee
             {
                 Id = 5,
-                FirstName = "Dulyan",
-                LastName = "De silva",
-                Annualsalary = 96000000,
+                FirstName = "Dulyana",
+                LastName = "Perera",
+                Annualsalary = 9600,
                 IsManager = false,
                 DepartmentId = 1
-            });
+            }); 
 
             foreach (var item in results)
             {
@@ -87,6 +90,91 @@
                 Console.WriteLine($"{item.FullName,-20} {item.AnnualSalary,10}");
             }
 
+            Console.WriteLine();
+            Console.WriteLine($"Join Method example {Environment.NewLine}{new string('-', 40)}");
+
+            //Join operation example - Method syntax
+            var resultJoinMethodSyntax = departmentList.Join(employeeLIst,
+                    department => department.Id,
+                    employee => employee.DepartmentId,
+                    (department, employee) => new
+                    {
+                        FullName = employee.FirstName + " " + employee.LastName,
+                        Annualsalary = employee.Annualsalary,
+                        DepartmentName = department.LongName
+                    }
+                    
+                    );
+            //nukna join ghuwoth enne inner join withri
+
+            foreach (var item in resultJoinMethodSyntax)
+            {
+                Console.WriteLine($"{item.FullName,-20} {item.Annualsalary,10}\t{item.DepartmentName}");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine($"Join Query example {Environment.NewLine}{new string('-', 40)}");
+
+            //Join operation example - Query syntax
+            var resultJoinQuerySyntax = from dept in departmentList
+                                        join emp in employeeLIst
+                                        on dept.Id equals emp.DepartmentId
+                                        select new
+                                        {
+                                            FullName = emp.FirstName + " " + emp.LastName,
+                                            AnnualSalary = emp.Annualsalary,
+                                            DepartmentName = dept.LongName,
+                                        };
+
+            foreach (var item in resultJoinQuerySyntax)
+            {
+                Console.WriteLine($"{item.FullName,-20} {item.AnnualSalary,10}\t{item.DepartmentName}");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine($"Group Join Method syntax example {Environment.NewLine}{new string('-', 40)}");
+
+            //Group Join operation example - Method syntax
+            var resultGropuJoinMethodSyntax = departmentList.GroupJoin(employeeLIst,
+                    dept => dept.Id,
+                    emp => emp.DepartmentId,
+                    (dept, employeesGroup) => new
+                    {
+                        Employees = employeesGroup,
+                        DepartmentName = dept.LongName
+                    });
+
+            foreach (var item in resultGropuJoinMethodSyntax)
+            {
+                Console.WriteLine($"Department Name: {item.DepartmentName}");
+                foreach (var emp in item.Employees)
+                {
+                    Console.WriteLine($"\t{emp.FirstName} {emp.LastName}");
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine($"Group Join Query syntax example {Environment.NewLine}{new string('-', 40)}");
+
+            // Group Join operation example - Query syntax
+            var resultGropuJoinQuerSyntax = from dept in departmentList
+                                            join emp in employeeLIst
+                                            on dept.Id equals emp.DepartmentId
+                                            into employeeGroup
+                                            select new
+                                            {
+                                                Employees = employeeGroup,
+                                                DepartmentName = dept.LongName
+                                            };
+
+            foreach (var item in resultGropuJoinQuerSyntax)
+            {
+                Console.WriteLine($"Department Name: {item.DepartmentName}");
+                foreach (var emp in item.Employees)
+                {
+                    Console.WriteLine($"\t{emp.FirstName} {emp.LastName}");
+                }
+            }
         }
     }
 
@@ -181,6 +269,18 @@
 
             employees.Add(employee);
 
+            employee = new Employee
+            {
+                Id = 5,
+                FirstName = "Kumaraguptha",
+                LastName = "Sandakelum",
+                Annualsalary = 20000.00m,
+                IsManager = true,
+                DepartmentId = 0
+            };
+
+            employees.Add(employee);
+
             return employees;
         }
 
@@ -208,9 +308,18 @@
 
             department = new Department
             {
-                Id = 1,
+                Id = 3,
                 ShortName = "FN",
                 LongName = "Finance"
+            };
+
+            departments.Add(department);
+
+            department = new Department
+            {
+                Id = 4,
+                ShortName = "MK",
+                LongName = "Marketing"
             };
 
             departments.Add(department);

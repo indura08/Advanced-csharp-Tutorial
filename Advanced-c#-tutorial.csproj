@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Generics\1-Introduction\" />
     <Folder Include="LINQ\Introduction\" />
     <Folder Include="LINQ\Operators\" />
   </ItemGroup>

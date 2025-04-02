@@ -131,6 +131,7 @@ namespace LINQExample_02
         }
     }
 
+    //contains, sequenceEqual wage etxtension method waldi meka use wenwa 
     public class EmployeeComparer : IEqualityComparer<Employee>
     {
         public bool Equals(Employee? x, Employee? y)

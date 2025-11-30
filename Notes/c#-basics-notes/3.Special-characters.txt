@@ -1,0 +1,25 @@
+The backslash (\) escape character turns special characters into string characters:
+
+Escape character	Result	Description
+\'	'	Single quote
+\"	"	Double quote
+\\	\	Backslash
+The sequence \"  inserts a double quote in a string:
+
+
+ExampleGet your own C# Server
+string txt = "We are the so-called \"Vikings\" from the north.";
+
+The sequence \'  inserts a single quote in a string:
+
+
+Example
+string txt = "It\'s alright.";
+
+The sequence \\  inserts a single backslash in a string:
+
+
+Example
+string txt = "The character \\ is called backslash.";
+
+Other useful escape characters in C# are:
